@@ -1,17 +1,14 @@
-use nom::character::complete;
-use nom::character::complete::{alphanumeric1, digit1};
-use nom::combinator::complete;
 use nom::{
-    bytes::complete::{is_not, tag, take_while_m_n},
-    character::complete::{char, multispace0},
-    combinator::{map_res, value},
+    bytes::complete::is_not,
+    character::complete::{anychar, char, multispace0},
+    combinator::value,
     error::ParseError,
-    sequence::{delimited, pair, tuple},
+    sequence::{delimited, pair},
     IResult,
 };
 
 pub fn grab_server(input: &str) -> IResult<&str, char> {
-    complete::anychar(input)
+    anychar(input)
 }
 fn ws<'a, F: 'a, O, E: ParseError<&'a str>>(
     inner: F,
